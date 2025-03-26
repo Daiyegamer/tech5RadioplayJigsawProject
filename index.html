@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Play Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Game</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chapter.html">Chapters</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>About the Radio Play</h2>
+            <p>Immerse yourself in a spaceship of killer AI machines .</p>
+        </section>
+        
+        <section>
+            <h2>Featured Episode</h2>
+            <audio id="audioPlayer" controls>
+                <source src="sample-15s.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <button id="playButton">Play</button>
+            <button id="pauseButton">Pause</button>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Radio Play Project</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
