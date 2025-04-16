@@ -10,7 +10,7 @@ const fragmentCodes = {
   chapter3label: "cw90s",
   chapter3fragment1: "yb04x",
   chapter3fragment2: "ru73c",
-  chapter4fragment3: "ng52a",
+  chapter3fragment3: "ng52a",
 };
 
 const chapterCode = {
