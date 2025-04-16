@@ -1,4 +1,15 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: #f7f7f7;
+}
+
+h1 {
+  color: #333;
+}
+
 #reader {
-  width: 600px;
-  height: 150px;
+  margin: 20px auto;
+  width: 300px;
 }
