@@ -19,7 +19,7 @@ Andrew Hill (*OZ*)
 
 - **Developer & Operations**: Adil Surve  
 - **Design**: Digna Patel & Shashank Laur  
-- **Web Developer**: Samuel Joy  
+- **Web Developer**: Samuel Roy Jojo
 - **Lead Developer**: Veerpal Kaur  
 
 ---
