@@ -71,11 +71,10 @@ window.onload = function () {
       });
     } else {
       isChapterSolved = false;
+      return;
     }
 
     if (isChapterSolved) {
-      console.log("The Chapter is Solved");
-
       if (chapterCode.chapter1 === chapter) {
         localStorage.setItem("isChapterOneSolved", "true");
       } else if (chapterCode.chapter2 === chapter) {
@@ -83,8 +82,11 @@ window.onload = function () {
       } else if (chapterCode.chapter3 === chapter) {
         localStorage.setItem("isChapterThreeSolved", "true");
       }
+
+      window.location.href = "../result.html";
     } else {
       console.log("The Chapter is not Solved");
+      window.location.href = "../result.html";
     }
     console.log(localStorage);
   });
