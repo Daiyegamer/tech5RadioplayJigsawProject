@@ -9,14 +9,33 @@
   <body>
     <h1>Echoes: Audio Mystery</h1>
     <img src="assets/images/logo.jpg" alt="Game Logo" style="max-width: 160px" />
+    <section style="display:block;">
+    <h3>Prologue</h3>
     <audio controls>
       <source src="../assets/audio/prologue/prologue.mp3" type="audio/mp3">
       Your browser does not support audio.
     </audio>
+    </section>
+    <section id="fullAudio" style="display:none;">
+      <h3>Listen to complete story</h3>
+      <audio controls>
+        <source src="../assets/audio/fullAudio/fullDrama.mp3" type="audio/mp3">
+        Your browser does not support audio.
+      </audio>
+      </section>
+      <section style="display:none;">
+        <h3>Epilogue</h3>
+        <audio controls>
+          <source src="../assets/audio/ending/epilogue.mp3" type="audio/mp3">
+          Your browser does not support audio.
+        </audio>
+        </section>
     <p>
       Scan QR codes to hear fragments. Then guess which chapter they belong to. Then click on solve to check your solution
     </p>
     <a href="chapter.html">🔎 View Chapters</a>
     <a href="guess.html">🧠 Solve </a>
+    <a href="index.html" onclick="localStorage.clear(); location.reload();">Replay</a>
+
   </body>
 </html>
