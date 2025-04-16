@@ -1,37 +1,25 @@
-# radioplayJigsawProject
+# 🎮 RadioplayJigsawProject
 
-Creating a virtual game based on the Echoes card game.
-Credits
+*A virtual game inspired by the Echoes card game.*
 
-Written by: Benjamin Oliver
+---
 
+## 🎭 Credits
 
-Edited by: Andrew Hill 
+**Written by:** Benjamin Oliver  
+**Edited by:** Andrew Hill  
+ 
+Benjamin Oliver (*The Handler*)  
+Lauren Brown (*Dr. Finlay*)  
+Lajos Babai (*Dr. Pyre*)  
+Alex Kiiffner (*Dr. Lankmann*)  
+Andrew Hill (*OZ*)  
 
+## 🛠️ Technical Team
 
+- **Developer & Operations**: Adil Surve  
+- **Design**: Digna Patel & Shashank Laur  
+- **Web Developer**: Samuel Joy  
+- **Lead Developer**: Veerpal Kaur  
 
-Benjamin Oliver as The Handler
-
-
-Lauren Brown as Dr. Finlay
-
-Lajos Babai as Dr. Pyre
-
-Alex Kiiffner as Dr. Lankmann
-
-Andrew Hill as OZ
-
-
-
-
-Technical team credits
-
-Developer and operations  : Adil Surve 
-
-Designed by Digna Patel & Shashank Laur
-
-Web developer : Sanuel Joy 
-
-lead developer : Veerpal Kaur 
-
-
+---
