@@ -20,6 +20,72 @@ const chapterCode = {
 };
 
 window.onload = function () {
-  localStorage.clear();
-  console.log(localStorage);
+  // The drag and drop feature
+  const fragments = document.querySelectorAll(".fragment");
+  const dropZones = document.querySelectorAll(".container.empty");
+
+  let draggedItem = null;
+
+  fragments.forEach((fragment) => {
+    fragment.addEventListener("dragstart", (e) => {
+      draggedItem = e.target;
+    });
+  });
+
+  dropZones.forEach((zone) => {
+    zone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+
+    zone.addEventListener("drop", (e) => {
+      if (zone.children.length === 0 && draggedItem) {
+        zone.appendChild(draggedItem);
+        draggedItem.setAttribute("draggable", "false"); // prevent redrag
+        draggedItem = null;
+        zone.classList.remove("empty");
+      }
+    });
+  });
+
+  /* Checking if a fragment is solved */
+  const checkBtn = document.getElementById("checkBtn");
+  const dropContainers = document.querySelectorAll(".container");
+  const guessContainers = document.querySelectorAll(".container.guess");
+
+  checkBtn.addEventListener("click", function () {
+    let isComplete = true;
+    let isChapterSolved = true;
+    let chapter = document.querySelector("main").dataset.chapter;
+    for (let i = 0; i < 4; i++) {
+      if (dropContainers[i].classList.contains("empty")) {
+        isComplete = false;
+      }
+    }
+    if (isComplete === true) {
+      guessContainers.forEach((guessContainer) => {
+        if (
+          fragmentCodes[guessContainer.id] !== guessContainer.children[0].id
+        ) {
+          isChapterSolved = false;
+        }
+      });
+    } else {
+      isChapterSolved = false;
+    }
+
+    if (isChapterSolved) {
+      console.log("The Chapter is Solved");
+
+      if (chapterCode.chapter1 === chapter) {
+        localStorage.setItem("isChapterOneSolved", "true");
+      } else if (chapterCode.chapter2 === chapter) {
+        localStorage.setItem("isChapterTwoSolved", "true");
+      } else if (chapterCode.chapter3 === chapter) {
+        localStorage.setItem("isChapterThreeSolved", "true");
+      }
+    } else {
+      console.log("The Chapter is not Solved");
+    }
+    console.log(localStorage);
+  });
 };
