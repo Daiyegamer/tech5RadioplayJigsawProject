@@ -10,8 +10,32 @@
     <div id="resultContainer"></div>
     <a href="">Go to Chapters</a>
     <a href="index.html">Reset Game</a>
-    <!-- <script>
-      window.addEventListener("DOMContentLoaded");
-    </scri> -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const resultContainer = document.getElementById("resultContainer");
+
+        const chapter1 = localStorage.getItem("isChapterOneSolved") === "true";
+        const chapter2 = localStorage.getItem("isChapterTwoSolved") === "true";
+        const chapter3 =
+          localStorage.getItem("isChapterThreeSolved") === "true";
+
+        resultContainer.innerHTML = `<ul>
+            <li>Chapter Spacedoor: ${
+              chapter1 ? "✅ Solved" : "❌ Not Solved"
+            }</li>
+            <li>Chapter Medbay: ${chapter2 ? "✅ Solved" : "❌ Not Solved"}</li>
+            <li>Chapter Airlock: ${
+              chapter3 ? "✅ Solved" : "❌ Not Solved"
+            }</li>
+          </ul>`;
+
+        if (chapter1 && chapter2 && chapter3) {
+          resultContainer.innerHTML += `<a href="solve-sequence.html">Solve the sequence</a>`;
+        }
+        if (localStorage.getItem("isGameSolved") === "true") {
+          resultContainer.innerHTML = `<h2>Congratulations 🎉. You have Solved the game.</h2>`;
+        }
+      });
+    </script>
   </body>
 </html>

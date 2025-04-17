@@ -52,14 +52,17 @@ window.onload = function () {
       });
     } else {
       isSequenceSolved = false;
+      return;
     }
 
     if (isSequenceSolved) {
       console.log("The Sequence is Solved");
 
       localStorage.setItem("isGameSolved", "true");
+      window.location.href = "../result.html";
     } else {
       console.log("The Sequence is not Solved");
+      window.location.href = "../result.html";
     }
     console.log(localStorage);
   });
