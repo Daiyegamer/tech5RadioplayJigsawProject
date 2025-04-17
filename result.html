@@ -8,9 +8,59 @@
   <body>
     <h1>Your Results</h1>
     <div id="resultContainer"></div>
+    <div id="audios-container">
+      <section id="chapterTwo">
+        <h3>Listen to complete chapter Medbay</h3>
+        <audio controls>
+          <source
+            src="./assets/audio/chapters/oz_radio_drama_chapter_2.mp3"
+            type="audio/mp3"
+          />
+          Your browser does not support audio.
+        </audio>
+      </section>
+      <section id="chapterThree">
+        <h3>Listen to complete chapter - Airlock</h3>
+        <audio controls>
+          <source
+            src="./assets/audio/chapters/oz_radio_drama_chapter_3.mp3"
+            type="audio/mp3"
+          />
+          Your browser does not support audio.
+        </audio>
+      </section>
+      <section id="chapterOne">
+        <h3>Listen to complete chapter - Spacedoor</h3>
+        <audio controls>
+          <source
+            src="./assets/audio/chapters/oz_radio_drama_chapter_1.mp3"
+            type="audio/mp3"
+          />
+          Your browser does not support audio.
+        </audio>
+      </section>
+
+      <section id="fullAudio">
+        <h3>Listen to complete story</h3>
+        <audio controls>
+          <source
+            src="./assets/audio/fullAudio/fullDrama.mp3"
+            type="audio/mp3"
+          />
+          Your browser does not support audio.
+        </audio>
+      </section>
+      <section id="epilogue">
+        <h3>Epilogue</h3>
+        <audio controls>
+          <source src="./assets/audio/ending/epilogue.mp3" type="audio/mp3" />
+          Your browser does not support audio.
+        </audio>
+      </section>
+    </div>
     <div class="button-container">
       <button class="btn">
-        <a href="./chapters.html">Go to Chapters</a>
+        <a href="./chapters/chapters.html">Go to Chapters</a>
       </button>
       <button class="btn">
         <a href="../scan.html">Scan your Card</a>
@@ -22,6 +72,23 @@
     <script>
       window.addEventListener("DOMContentLoaded", () => {
         const resultContainer = document.getElementById("resultContainer");
+        const chapterOneAudio = document.getElementById("chapterOne");
+        const chapterTwoAudio = document.getElementById("chapterTwo");
+        const chapterThreeAudio = document.getElementById("chapterThree");
+        const fullAudio = document.getElementById("fullAudio");
+        const epilogue = document.getElementById("epilogue");
+
+        const audios = [
+          chapterOneAudio,
+          chapterTwoAudio,
+          chapterThreeAudio,
+          fullAudio,
+          epilogue,
+        ];
+
+        audios.forEach((audio) => {
+          audio.style.display = "none";
+        });
 
         const chapter1 = localStorage.getItem("isChapterOneSolved") === "true";
         const chapter2 = localStorage.getItem("isChapterTwoSolved") === "true";
@@ -39,10 +106,23 @@
           </ul>`;
 
         if (chapter1 && chapter2 && chapter3) {
-          resultContainer.innerHTML += `<a href="solve-sequence.html">Solve the sequence</a>`;
+          resultContainer.innerHTML += `<button class="btn"><a href="solve-sequence.html">Solve the sequence now</a></button>`;
+        }
+
+        if (chapter1) {
+          chapterOneAudio.style.display = "block";
+        }
+
+        if (chapter2) {
+          chapterTwoAudio.style.display = "block";
+        }
+        if (chapter3) {
+          chapterThreeAudio.style.display = "block";
         }
         if (localStorage.getItem("isGameSolved") === "true") {
           resultContainer.innerHTML = `<h2>Congratulations 🎉. You have Solved the game.</h2>`;
+          epilogue.style.display = "block";
+          fullAudio.style.display = "block";
         }
       });
     </script>
