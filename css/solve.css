@@ -22,3 +22,7 @@
   object-fit: cover;
   cursor: grab;
 }
+.container img {
+  margin-bottom: 0;
+  box-shadow: none;
+}
