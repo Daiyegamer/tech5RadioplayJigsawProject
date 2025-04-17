@@ -5,26 +5,28 @@
     <title>OZ</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script async defer src="./scripts/main.js" type="text/javascript"></script>
-    
   </head>
   <body>
-    <h1>OZ</h1>
-    <img src="assets/images/logo.jpg" alt="Game Logo" style="max-width: 160px" />
-    <section style="display:block;">
+    <img
+      src="assets/images/logo.jpg"
+      alt="Game Logo"
+      style="max-width: 160px"
+    />
+    <section style="display: block">
       <h3>Prologue</h3>
       <audio controls>
         <source src="./assets/audio/prologue/prologue.mp3" type="audio/mp3" />
         Your browser does not support audio.
       </audio>
     </section>
-    <section id="fullAudio" style="display:none;">
+    <section id="fullAudio" style="display: none">
       <h3>Listen to complete story</h3>
       <audio controls>
         <source src="./assets/audio/fullAudio/fullDrama.mp3" type="audio/mp3" />
         Your browser does not support audio.
       </audio>
     </section>
-    <section style="display:none;">
+    <section style="display: none">
       <h3>Epilogue</h3>
       <audio controls>
         <source src="./assets/audio/ending/epilogue.mp3" type="audio/mp3" />
@@ -32,14 +34,24 @@
       </audio>
     </section>
     <p>
-      Scan QR codes to hear fragments. Then guess which chapter they belong to. Then click on solve to check your solution.
+      Scan QR codes to hear fragments. Then guess which chapter they belong to.
+      Then click on solve to check your solution.
     </p>
     <div class="button-container">
-      <button onclick="window.location.href='scan.html';">🔎 Scan Your Card</button>
-      <button onclick="window.location.href='guess.html';">🕵️‍♂️ Solve Chapter Sequence</button>
+      <button onclick="window.location.href='scan.html';">
+        🔎 Scan Your Card
+      </button>
+      <button onclick="window.location.href='guess.html';">
+        🕵️‍♂️ Solve Chapter Sequence
+      </button>
     </div>
 
     <!-- Replay button at the bottom -->
-    <button class="replay-button" onclick="localStorage.clear(); location.reload();">Replay</button>
+    <button
+      class="replay-button"
+      onclick="localStorage.clear(); location.reload();"
+    >
+      Replay
+    </button>
   </body>
 </html>
