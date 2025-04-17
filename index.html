@@ -38,20 +38,17 @@
       Then click on solve to check your solution.
     </p>
     <div class="button-container">
-      <button onclick="window.location.href='scan.html';">
-        🔎 Scan Your Card
+      <button class="btn">
+        <a href="scan.html">🔎 Scan Your Card</a>
       </button>
-      <button onclick="window.location.href='guess.html';">
-        🕵️‍♂️ Solve Chapter Sequence
+      <button class="btn">
+        <a href="./chapters/chapters.html">🕵️‍♂️ Solve Chapters</a>
       </button>
     </div>
 
     <!-- Replay button at the bottom -->
-    <button
-      class="replay-button"
-      onclick="localStorage.clear(); location.reload();"
-    >
-      Replay
+    <button class="replay-button btn">
+      <a href="/" onclick="localStorage.clear();">Reset Game</a>
     </button>
   </body>
 </html>
