@@ -28,12 +28,10 @@ window.onload = function () {
   let offsetX = 0;
   let offsetY = 0;
 
-  // Optional: load drop sound
-  // const dropSound = new Audio("drop.mp3");
-
   fragments.forEach((fragment) => {
     let originalTransform = "";
     let originalZ = "";
+    fragment.dataset.originalParent = fragment.parentElement.id || "";
 
     fragment.addEventListener("dragstart", (e) => {
       draggedItem = e.target;
@@ -46,20 +44,17 @@ window.onload = function () {
       offsetX = touch.clientX - rect.left;
       offsetY = touch.clientY - rect.top;
       draggedItem = e.target;
-
-      // Save original position
       originalTransform = draggedItem.style.transform || "";
       originalZ = draggedItem.style.zIndex || "1";
-
       draggedItem.style.zIndex = "1000";
     });
 
     fragment.addEventListener("touchmove", (e) => {
       e.preventDefault();
       const touch = e.touches[0];
-      const x = touch.clientX - offsetX;
-      const y = touch.clientY - offsetY;
-      draggedItem.style.transform = `translate(${x}px, ${y}px)`;
+      const x = touch.clientX;
+      const y = touch.clientY;
+      draggedItem.style.transform = `translate(${x - draggedItem.offsetWidth / 2}px, ${y - draggedItem.offsetHeight / 2}px)`;
 
       currentTouchZone = null;
 
@@ -88,14 +83,8 @@ window.onload = function () {
         draggedItem.style.position = "static";
         draggedItem.setAttribute("draggable", "false");
         currentTouchZone.classList.remove("empty");
-
-        // Haptic feedback
         if (navigator.vibrate) navigator.vibrate(50);
-
-        // Optional: play sound
-        // dropSound.play();
       } else {
-        // Snap back
         draggedItem.style.transition = "transform 0.2s ease-out";
         draggedItem.style.transform = originalTransform;
         setTimeout(() => {
@@ -118,11 +107,7 @@ window.onload = function () {
         zone.appendChild(draggedItem);
         draggedItem.setAttribute("draggable", "false");
         zone.classList.remove("empty");
-
-        // Optional: haptic + sound
         if (navigator.vibrate) navigator.vibrate(50);
-        // dropSound.play();
-
         draggedItem = null;
       }
     });
@@ -164,7 +149,6 @@ window.onload = function () {
       } else if (chapterCode.chapter3 === chapter) {
         localStorage.setItem("isChapterThreeSolved", "true");
       }
-
       window.location.href = "result.html";
     } else {
       console.log("The Chapter is not Solved");
@@ -173,8 +157,24 @@ window.onload = function () {
 
     console.log(localStorage);
   });
+
+  const resetBtn = document.getElementById("resetBtn");
+
+  resetBtn.addEventListener("click", () => {
+    fragments.forEach((fragment) => {
+      document.body.appendChild(fragment);
+      fragment.style.transform = "translate(0, 0)";
+      fragment.style.position = "absolute";
+      fragment.style.zIndex = "";
+      fragment.setAttribute("draggable", "true");
+    });
+
+    dropZones.forEach((zone) => {
+      zone.classList.add("empty");
+    });
+  });
 };
+
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
-  // alert("Right-click is disabled in this game!");
 });
