@@ -41,17 +41,15 @@ window.onload = function () {
       offsetX = touch.clientX - rect.left;
       offsetY = touch.clientY - rect.top;
       draggedItem = e.target;
-
       draggedItem.classList.add("dragging");
     });
 
     fragment.addEventListener("touchmove", (e) => {
       e.preventDefault();
       const touch = e.touches[0];
-      const x = touch.clientX;
-      const y = touch.clientY;
-
-      draggedItem.style.transform = `translate(${x - offsetX}px, ${y - offsetY}px)`;
+      const x = touch.clientX - offsetX;
+      const y = touch.clientY - offsetY;
+      draggedItem.style.transform = `translate(${x}px, ${y}px)`;
 
       currentTouchZone = null;
 
