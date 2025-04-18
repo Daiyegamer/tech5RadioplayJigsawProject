@@ -35,27 +35,30 @@ window.onload = function () {
     });
 
     fragment.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  draggedItem = e.target;
+      e.preventDefault();
+      draggedItem = e.target;
 
-  // Make it fixed BEFORE measuring!
-  draggedItem.classList.add("dragging");
+      const touch = e.touches[0];
+      const rect = draggedItem.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
 
-  const touch = e.touches[0];
-  const rect = draggedItem.getBoundingClientRect();
-  offsetX = touch.clientX - rect.left;
-  offsetY = touch.clientY - rect.top;
-});
+      draggedItem.classList.add("dragging");
+      draggedItem.style.left = rect.left + "px";
+      draggedItem.style.top = rect.top + "px";
+      draggedItem.style.position = "fixed";
+    });
 
     fragment.addEventListener("touchmove", (e) => {
       e.preventDefault();
       const touch = e.touches[0];
       const x = touch.clientX - offsetX;
       const y = touch.clientY - offsetY;
-      draggedItem.style.transform = `translate(${x}px, ${y}px)`;
+
+      draggedItem.style.left = x + "px";
+      draggedItem.style.top = y + "px";
 
       currentTouchZone = null;
-
       dropZones.forEach((zone) => {
         const rect = zone.getBoundingClientRect();
         const isInside =
@@ -74,14 +77,18 @@ window.onload = function () {
 
       if (currentTouchZone && currentTouchZone.children.length === 0) {
         currentTouchZone.appendChild(draggedItem);
-        draggedItem.style.transform = "translate(0, 0)";
-        draggedItem.style.position = "relative";
         draggedItem.setAttribute("draggable", "false");
+        draggedItem.classList.remove("dragging");
+        draggedItem.style.left = "";
+        draggedItem.style.top = "";
+        draggedItem.style.position = "relative";
         currentTouchZone.classList.remove("empty");
         if (navigator.vibrate) navigator.vibrate(50);
       } else {
         draggedItem.style.transition = "transform 0.2s ease-out";
-        draggedItem.style.transform = "translate(0, 0)";
+        draggedItem.style.left = "";
+        draggedItem.style.top = "";
+        draggedItem.style.position = "relative";
         setTimeout(() => {
           draggedItem.style.transition = "";
         }, 200);
@@ -101,6 +108,10 @@ window.onload = function () {
       if (zone.children.length === 0 && draggedItem) {
         zone.appendChild(draggedItem);
         draggedItem.setAttribute("draggable", "false");
+        draggedItem.classList.remove("dragging");
+        draggedItem.style.left = "";
+        draggedItem.style.top = "";
+        draggedItem.style.position = "relative";
         zone.classList.remove("empty");
         if (navigator.vibrate) navigator.vibrate(50);
         draggedItem = null;
@@ -158,7 +169,8 @@ window.onload = function () {
         originalZone.appendChild(fragment);
         fragment.style.transform = "translate(0, 0)";
         fragment.style.position = "relative";
-        fragment.style.zIndex = "";
+        fragment.style.left = "";
+        fragment.style.top = "";
         fragment.classList.remove("dragging");
         fragment.setAttribute("draggable", "true");
       });
