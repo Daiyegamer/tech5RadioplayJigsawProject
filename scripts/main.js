@@ -168,9 +168,9 @@ window.onload = function () {
       fragments.forEach((fragment) => {
         originalZone.appendChild(fragment);
         fragment.style.transform = "translate(0, 0)";
-        fragment.style.position = "relative";
         fragment.style.left = "";
         fragment.style.top = "";
+        fragment.style.position = "relative";
         fragment.classList.remove("dragging");
         fragment.setAttribute("draggable", "true");
       });
