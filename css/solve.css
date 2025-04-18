@@ -42,9 +42,9 @@
 /* Only while dragging */
 .fragment.dragging {
   position: fixed !important;
-  z-index: 1000 !important;
+  z-index: 1000;
   pointer-events: none;
-  transition: transform 0.2s ease-out;
+  transition: none;
 }
 
 body {
