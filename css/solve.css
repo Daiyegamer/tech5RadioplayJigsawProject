@@ -1,9 +1,11 @@
 #drop-zone,
 #fragment-zone {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 20px;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -13,6 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .container img,
@@ -21,16 +24,22 @@
   height: 100px;
   object-fit: cover;
   cursor: grab;
-  touch-action: none;
   user-select: none;
-  position: absolute;
-  z-index: 1;
-  transition: transform 0.2s ease-out;
+  touch-action: none;
 }
 
-.container img {
-  margin-bottom: 0;
-  box-shadow: none;
+/* Fragments in the fragment zone */
+#fragment-zone .fragment {
+  position: relative;
+  z-index: 1;
+}
+
+/* Fragments being dragged */
+.fragment.dragging {
+  position: fixed !important;
+  z-index: 1000 !important;
+  pointer-events: none;
+  transition: transform 0.2s ease-out;
 }
 
 body {
