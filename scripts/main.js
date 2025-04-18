@@ -174,3 +174,7 @@ window.onload = function () {
     console.log(localStorage);
   });
 };
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  // alert("Right-click is disabled in this game!");
+});
