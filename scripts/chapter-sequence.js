@@ -5,9 +5,9 @@ const chapterCode = {
 };
 
 window.onload = function () {
-  // The drag and drop feature
   const fragments = document.querySelectorAll(".fragment");
   const dropZones = document.querySelectorAll(".container.empty");
+  const originalZone = document.getElementById("fragment-zone"); // required for reset
 
   let draggedItem = null;
 
@@ -25,26 +25,27 @@ window.onload = function () {
     zone.addEventListener("drop", (e) => {
       if (zone.children.length === 0 && draggedItem) {
         zone.appendChild(draggedItem);
-        draggedItem.setAttribute("draggable", "false"); // prevent redrag
+        draggedItem.setAttribute("draggable", "false");
         draggedItem = null;
         zone.classList.remove("empty");
       }
     });
   });
 
-  /* Checking if the sequence is solved */
   const checkBtn = document.getElementById("checkBtn");
   const guessContainers = document.querySelectorAll(".container.guess");
 
   checkBtn.addEventListener("click", function () {
     let isComplete = true;
     let isSequenceSolved = true;
+
     for (let i = 0; i < 3; i++) {
       if (guessContainers[i].classList.contains("empty")) {
         isComplete = false;
       }
     }
-    if (isComplete === true) {
+
+    if (isComplete) {
       guessContainers.forEach((guessContainer) => {
         if (chapterCode[guessContainer.id] !== guessContainer.children[0].id) {
           isSequenceSolved = false;
@@ -56,14 +57,26 @@ window.onload = function () {
     }
 
     if (isSequenceSolved) {
-      console.log("The Sequence is Solved");
-
       localStorage.setItem("isGameSolved", "true");
       window.location.href = "../result.html";
     } else {
-      console.log("The Sequence is not Solved");
       window.location.href = "../result.html";
     }
+
     console.log(localStorage);
   });
+
+  const resetBtn = document.getElementById("resetBtn");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      fragments.forEach((fragment) => {
+        originalZone.appendChild(fragment);
+        fragment.setAttribute("draggable", "true");
+      });
+
+      dropZones.forEach((zone) => {
+        zone.classList.add("empty");
+      });
+    });
+  }
 };
