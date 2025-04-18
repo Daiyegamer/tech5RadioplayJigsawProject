@@ -22,6 +22,7 @@ const chapterCode = {
 window.onload = function () {
   const fragments = document.querySelectorAll(".fragment");
   const dropZones = document.querySelectorAll(".container.empty");
+  const originalZone = document.getElementById("fragment-zone");
 
   let draggedItem = null;
   let currentTouchZone = null;
@@ -29,9 +30,7 @@ window.onload = function () {
   let offsetY = 0;
 
   fragments.forEach((fragment) => {
-    let originalTransform = "";
     let originalZ = "";
-    fragment.dataset.originalParent = fragment.parentElement.id || "";
 
     fragment.addEventListener("dragstart", (e) => {
       draggedItem = e.target;
@@ -44,7 +43,6 @@ window.onload = function () {
       offsetX = touch.clientX - rect.left;
       offsetY = touch.clientY - rect.top;
       draggedItem = e.target;
-      originalTransform = draggedItem.style.transform || "";
       originalZ = draggedItem.style.zIndex || "1";
       draggedItem.style.zIndex = "1000";
     });
@@ -57,7 +55,6 @@ window.onload = function () {
       draggedItem.style.transform = `translate(${x - draggedItem.offsetWidth / 2}px, ${y - draggedItem.offsetHeight / 2}px)`;
 
       currentTouchZone = null;
-
       dropZones.forEach((zone) => {
         const rect = zone.getBoundingClientRect();
         const isInside =
@@ -67,10 +64,7 @@ window.onload = function () {
           touch.clientY < rect.bottom;
 
         zone.classList.toggle("highlight", isInside);
-
-        if (isInside) {
-          currentTouchZone = zone;
-        }
+        if (isInside) currentTouchZone = zone;
       });
     });
 
@@ -86,7 +80,7 @@ window.onload = function () {
         if (navigator.vibrate) navigator.vibrate(50);
       } else {
         draggedItem.style.transition = "transform 0.2s ease-out";
-        draggedItem.style.transform = originalTransform;
+        draggedItem.style.transform = "translate(0, 0)";
         setTimeout(() => {
           draggedItem.style.transition = "";
         }, 200);
@@ -100,7 +94,6 @@ window.onload = function () {
 
   dropZones.forEach((zone) => {
     zone.addEventListener("dragover", (e) => e.preventDefault());
-
     zone.addEventListener("drop", (e) => {
       e.preventDefault();
       if (zone.children.length === 0 && draggedItem) {
@@ -154,15 +147,12 @@ window.onload = function () {
       console.log("The Chapter is not Solved");
       window.location.href = "result.html";
     }
-
-    console.log(localStorage);
   });
 
   const resetBtn = document.getElementById("resetBtn");
-
   resetBtn.addEventListener("click", () => {
     fragments.forEach((fragment) => {
-      document.body.appendChild(fragment);
+      originalZone.appendChild(fragment);
       fragment.style.transform = "translate(0, 0)";
       fragment.style.position = "absolute";
       fragment.style.zIndex = "";
