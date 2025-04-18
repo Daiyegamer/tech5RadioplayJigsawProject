@@ -25,76 +25,109 @@ window.onload = function () {
 
   let draggedItem = null;
   let currentTouchZone = null;
+  let offsetX = 0;
+  let offsetY = 0;
 
-  // Desktop drag-and-drop
+  // Optional: load drop sound
+  // const dropSound = new Audio("drop.mp3");
+
   fragments.forEach((fragment) => {
+    let originalTransform = "";
+    let originalZ = "";
+
     fragment.addEventListener("dragstart", (e) => {
       draggedItem = e.target;
     });
 
-    // Touch start
     fragment.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const rect = fragment.getBoundingClientRect();
+      offsetX = touch.clientX - rect.left;
+      offsetY = touch.clientY - rect.top;
       draggedItem = e.target;
-      draggedItem.style.position = "absolute";
+
+      // Save original position
+      originalTransform = draggedItem.style.transform || "";
+      originalZ = draggedItem.style.zIndex || "1";
+
       draggedItem.style.zIndex = "1000";
     });
 
-    // Touch move
     fragment.addEventListener("touchmove", (e) => {
+      e.preventDefault();
       const touch = e.touches[0];
-      draggedItem.style.left = touch.pageX - draggedItem.offsetWidth / 2 + "px";
-      draggedItem.style.top = touch.pageY - draggedItem.offsetHeight / 2 + "px";
+      const x = touch.clientX - offsetX;
+      const y = touch.clientY - offsetY;
+      draggedItem.style.transform = `translate(${x}px, ${y}px)`;
 
-      // Check which drop zone is under the touch point
+      currentTouchZone = null;
+
       dropZones.forEach((zone) => {
         const rect = zone.getBoundingClientRect();
-        if (
+        const isInside =
           touch.clientX > rect.left &&
           touch.clientX < rect.right &&
           touch.clientY > rect.top &&
-          touch.clientY < rect.bottom
-        ) {
+          touch.clientY < rect.bottom;
+
+        zone.classList.toggle("highlight", isInside);
+
+        if (isInside) {
           currentTouchZone = zone;
         }
       });
     });
 
-    // Touch end
-    fragment.addEventListener("touchend", (e) => {
+    fragment.addEventListener("touchend", () => {
+      dropZones.forEach((z) => z.classList.remove("highlight"));
+
       if (currentTouchZone && currentTouchZone.children.length === 0) {
         currentTouchZone.appendChild(draggedItem);
+        draggedItem.style.transform = "translate(0, 0)";
+        draggedItem.style.position = "static";
         draggedItem.setAttribute("draggable", "false");
         currentTouchZone.classList.remove("empty");
+
+        // Haptic feedback
+        if (navigator.vibrate) navigator.vibrate(50);
+
+        // Optional: play sound
+        // dropSound.play();
       } else {
-        // Reset position if dropped outside
-        draggedItem.style.position = "";
-        draggedItem.style.zIndex = "";
-        draggedItem.style.left = "";
-        draggedItem.style.top = "";
+        // Snap back
+        draggedItem.style.transition = "transform 0.2s ease-out";
+        draggedItem.style.transform = originalTransform;
+        setTimeout(() => {
+          draggedItem.style.transition = "";
+        }, 200);
       }
 
+      draggedItem.style.zIndex = originalZ;
       draggedItem = null;
       currentTouchZone = null;
     });
   });
 
-  // Desktop drop zone logic
   dropZones.forEach((zone) => {
-    zone.addEventListener("dragover", (e) => {
-      e.preventDefault();
-    });
+    zone.addEventListener("dragover", (e) => e.preventDefault());
 
     zone.addEventListener("drop", (e) => {
+      e.preventDefault();
       if (zone.children.length === 0 && draggedItem) {
         zone.appendChild(draggedItem);
         draggedItem.setAttribute("draggable", "false");
-        draggedItem = null;
         zone.classList.remove("empty");
+
+        // Optional: haptic + sound
+        if (navigator.vibrate) navigator.vibrate(50);
+        // dropSound.play();
+
+        draggedItem = null;
       }
     });
   });
 
-  /* Checking if a fragment is solved */
   const checkBtn = document.getElementById("checkBtn");
   const dropContainers = document.querySelectorAll(".container");
   const guessContainers = document.querySelectorAll(".container.guess");
@@ -103,12 +136,14 @@ window.onload = function () {
     let isComplete = true;
     let isChapterSolved = true;
     let chapter = document.querySelector("main").dataset.chapter;
+
     for (let i = 0; i < 4; i++) {
       if (dropContainers[i].classList.contains("empty")) {
         isComplete = false;
       }
     }
-    if (isComplete === true) {
+
+    if (isComplete) {
       guessContainers.forEach((guessContainer) => {
         if (
           fragmentCodes[guessContainer.id] !== guessContainer.children[0].id
@@ -135,6 +170,7 @@ window.onload = function () {
       console.log("The Chapter is not Solved");
       window.location.href = "result.html";
     }
+
     console.log(localStorage);
   });
 };
