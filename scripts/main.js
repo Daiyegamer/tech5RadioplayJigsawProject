@@ -20,18 +20,65 @@ const chapterCode = {
 };
 
 window.onload = function () {
-  // The drag and drop feature
   const fragments = document.querySelectorAll(".fragment");
   const dropZones = document.querySelectorAll(".container.empty");
 
   let draggedItem = null;
+  let currentTouchZone = null;
 
+  // Desktop drag-and-drop
   fragments.forEach((fragment) => {
     fragment.addEventListener("dragstart", (e) => {
       draggedItem = e.target;
     });
+
+    // Touch start
+    fragment.addEventListener("touchstart", (e) => {
+      draggedItem = e.target;
+      draggedItem.style.position = "absolute";
+      draggedItem.style.zIndex = "1000";
+    });
+
+    // Touch move
+    fragment.addEventListener("touchmove", (e) => {
+      const touch = e.touches[0];
+      draggedItem.style.left = touch.pageX - draggedItem.offsetWidth / 2 + "px";
+      draggedItem.style.top = touch.pageY - draggedItem.offsetHeight / 2 + "px";
+
+      // Check which drop zone is under the touch point
+      dropZones.forEach((zone) => {
+        const rect = zone.getBoundingClientRect();
+        if (
+          touch.clientX > rect.left &&
+          touch.clientX < rect.right &&
+          touch.clientY > rect.top &&
+          touch.clientY < rect.bottom
+        ) {
+          currentTouchZone = zone;
+        }
+      });
+    });
+
+    // Touch end
+    fragment.addEventListener("touchend", (e) => {
+      if (currentTouchZone && currentTouchZone.children.length === 0) {
+        currentTouchZone.appendChild(draggedItem);
+        draggedItem.setAttribute("draggable", "false");
+        currentTouchZone.classList.remove("empty");
+      } else {
+        // Reset position if dropped outside
+        draggedItem.style.position = "";
+        draggedItem.style.zIndex = "";
+        draggedItem.style.left = "";
+        draggedItem.style.top = "";
+      }
+
+      draggedItem = null;
+      currentTouchZone = null;
+    });
   });
 
+  // Desktop drop zone logic
   dropZones.forEach((zone) => {
     zone.addEventListener("dragover", (e) => {
       e.preventDefault();
@@ -40,7 +87,7 @@ window.onload = function () {
     zone.addEventListener("drop", (e) => {
       if (zone.children.length === 0 && draggedItem) {
         zone.appendChild(draggedItem);
-        draggedItem.setAttribute("draggable", "false"); // prevent redrag
+        draggedItem.setAttribute("draggable", "false");
         draggedItem = null;
         zone.classList.remove("empty");
       }
