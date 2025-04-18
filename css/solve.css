@@ -26,3 +26,15 @@
   margin-bottom: 0;
   box-shadow: none;
 }
+body {
+  touch-action: pan-y pinch-zoom; /* Enables two-finger scroll only */
+}
+
+.fragment {
+  touch-action: none; /* Prevents one-finger scrolling while dragging */
+  user-select: none;
+}
+.container img {
+  touch-action: none;
+  user-select: none;
+}
