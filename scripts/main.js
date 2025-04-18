@@ -83,10 +83,10 @@ window.onload = function () {
         localStorage.setItem("isChapterThreeSolved", "true");
       }
 
-      window.location.href = "../result.html";
+      window.location.href = "/result.html";
     } else {
       console.log("The Chapter is not Solved");
-      window.location.href = "../result.html";
+      window.location.href = "/result.html";
     }
     console.log(localStorage);
   });
