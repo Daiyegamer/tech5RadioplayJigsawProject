@@ -35,14 +35,17 @@ window.onload = function () {
     });
 
     fragment.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      const touch = e.touches[0];
-      const rect = fragment.getBoundingClientRect();
-      offsetX = touch.clientX - rect.left;
-      offsetY = touch.clientY - rect.top;
-      draggedItem = e.target;
-      draggedItem.classList.add("dragging");
-    });
+  e.preventDefault();
+  draggedItem = e.target;
+
+  // Make it fixed BEFORE measuring!
+  draggedItem.classList.add("dragging");
+
+  const touch = e.touches[0];
+  const rect = draggedItem.getBoundingClientRect();
+  offsetX = touch.clientX - rect.left;
+  offsetY = touch.clientY - rect.top;
+});
 
     fragment.addEventListener("touchmove", (e) => {
       e.preventDefault();
