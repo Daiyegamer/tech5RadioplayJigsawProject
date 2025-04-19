@@ -152,7 +152,7 @@ audio {
   color: #eee;
   display: flex;
   justify-content: center;
-  align-items: centre;
+  align-items: center;
   overflow: hidden;
   z-index: 9999;
   flex-direction: column;
