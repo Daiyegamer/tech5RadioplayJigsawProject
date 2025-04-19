@@ -175,10 +175,10 @@ audio {
 
 @keyframes scrollUp {
   0% {
-    transform: translateY(100vh);
+    transform: translateY(100vh); /* Start below screen */
   }
   100% {
-    transform: translateY(-100vh);
+    transform: translateY(-200vh); /* Scroll above screen */
   }
 }
 
@@ -190,3 +190,14 @@ audio {
     opacity: 1;
   }
 }
+
+#after-credits {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10000;
+}
+
