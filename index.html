@@ -70,23 +70,30 @@
       const creditsContent = document.getElementById("credits-content");
       const mainContent = document.getElementById("main-content");
       const afterCredits = document.getElementById("after-credits");
-
+  
       if (epilogueAudio && creditsContainer && mainContent) {
         epilogueAudio.addEventListener("ended", () => {
+          // Hide main content
           mainContent.style.display = "none";
+  
+          // Show credits container
           creditsContainer.style.display = "flex";
           window.scrollTo({ top: 0, behavior: "smooth" });
-
-
+  
+          // Reset credits animation so it plays fresh
+          creditsContent.style.animation = "none";
+          void creditsContent.offsetWidth; // Force reflow
+          creditsContent.style.animation = "scrollUp 40s linear forwards";
+  
+          // Show Play Again button when animation finishes
           creditsContent.addEventListener("animationend", () => {
             afterCredits.style.display = "block";
-          });
-
-
+          }, { once: true });
         });
       }
     });
   </script>
+  
 
 
 
