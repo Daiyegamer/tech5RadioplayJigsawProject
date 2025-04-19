@@ -152,7 +152,7 @@ audio {
   color: #eee;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   z-index: 9999;
   flex-direction: column;
@@ -160,7 +160,7 @@ audio {
 }
 
 .credits {
-  animation: scrollUp 40s linear forwards;
+  animation: scrollUp 20s linear forwards;
   text-align: center;
   font-size: 18px;
   line-height: 1.6;
