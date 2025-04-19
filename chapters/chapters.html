@@ -54,15 +54,16 @@
         const chapterDiv = document.getElementById(chapterId);
         const link = chapterDiv.querySelector("a");
   
-        // Add status icon
         const icon = document.createElement("div");
         icon.className = "status-icon";
         icon.textContent = solved ? "✔️" : "🔒";
         chapterDiv.appendChild(icon);
   
         chapterDiv.classList.add("locked");
+        if (!solved) {
+          chapterDiv.classList.add("unsolved"); // <- Add only to unsolved ones
+        }
   
-        // Unified message handler for both click and touch
         function showMessage(e) {
           e.preventDefault();
           e.stopPropagation();
@@ -88,9 +89,5 @@
       }
     });
   </script>
-  
-  
-  
-  
 </body>
 </html>

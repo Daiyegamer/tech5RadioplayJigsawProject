@@ -204,11 +204,12 @@ audio {
   position: relative;
 }
 
-.chapter.locked a {
-  
+
+.chapter.locked.unsolved a {
   opacity: 0.4;
   filter: grayscale(100%);
 }
+
 
 .chapter .status-icon {
   position: absolute;
@@ -221,8 +222,11 @@ audio {
   font-size: 18px;
   font-weight: bold;
   box-shadow: 0 0 6px #00bcd4aa;
+  z-index: 2;
 }
 
-.chapter.locked .status-icon {
-  background: #444;
+
+.chapter.locked.unsolved .status-icon {
+  filter: none !important;
+  opacity: 1 !important;
 }
