@@ -160,7 +160,7 @@ audio {
 }
 
 .credits {
-  animation: scrollUp 20s linear forwards;
+  animation: scrollUp 30s linear forwards;
   text-align: center;
   font-size: 18px;
   line-height: 1.6;
