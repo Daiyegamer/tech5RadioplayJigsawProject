@@ -157,7 +157,6 @@ audio {
   z-index: 9999;
   flex-direction: column;
   animation: fadeIn 2s ease-in forwards;
-
   mask-image: linear-gradient(to top, transparent, black 5%, black 95%, transparent);
   -webkit-mask-image: linear-gradient(to top, transparent, black 5%, black 95%, transparent);
 }
@@ -168,17 +167,16 @@ audio {
   font-size: 18px;
   line-height: 1.6;
   white-space: pre-line;
-  padding-bottom: 100vh;
   width: 100%;
   max-width: 600px;
 }
 
 @keyframes scrollUp {
   0% {
-    transform: translateY(100vh); /* Start below the screen */
+    transform: translateY(100vh); /* Start below the screen (bottom) */
   }
   100% {
-    transform: translateY(-100vh); /* End at the top of the screen */
+    transform: translateY(-100%); /* End at the top of the screen */
   }
 }
 
@@ -200,4 +198,3 @@ audio {
   text-align: center;
   z-index: 10000;
 }
-
