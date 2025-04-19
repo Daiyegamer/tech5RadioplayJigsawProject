@@ -236,10 +236,10 @@ audio {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   max-width: 1000px;
-  margin: 40px auto;
+  margin: 15px auto;
   text-align: center;
 }
 
@@ -247,14 +247,14 @@ audio {
   width: 160px;
   height: auto;
   flex-shrink: 0;
-  margin: 0 20px;
+  margin: 0 15px;
   box-shadow: 0 0 12px #00bcd4aa;
   border-radius: 10px;
 }
 
 .synopsis {
   flex: 1 1 300px;
-  max-width: 320px;
+  max-width: 350px;
   font-size: .85rem;
   color: #ddd;
   line-height: 1.2;
