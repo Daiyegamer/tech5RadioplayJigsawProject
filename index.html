@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>OZ</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    
-  </head>
-  <body>
-   <div id="main-content"> 
-    <img
-      src="assets/images/logo.jpg"
-      alt="Game Logo"
-      style="max-width: 160px"
-    />
+
+<head>
+  <meta charset="UTF-8" />
+  <title>OZ</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+  <div id="main-content">
+    <img src="assets/images/logo.jpg" alt="Game Logo" style="max-width: 160px" />
     <section style="display: block">
       <h3>Prologue</h3>
       <audio controls>
@@ -33,65 +31,66 @@
       </button>
     </div>
 
-    
-    <button onclick="localStorage.clear(); location.reload();" class="btn-plain">Restart Game</button>
-   </div>
 
-    <div class="credits-container" id="credits" style="display: none;">
-      <div class="credits" id="credits-content">
-        <br><br><br><br>
-        <p>🎭 <strong>Credits</strong></p>
-        <p>Written by: Benjamin Oliver</p>
-        <p>Edited by: Andrew Hill</p>
-        <br />
-        <p><strong>Cast</strong></p>
-        <p><strong>Benjamin Oliver</strong> (The Handler)</p>
-        <p><strong>Lauren Brown</strong> (Dr. Finlay)</p>
-        <p><strong>Lajos Babai</strong> (Dr. Pyre)</p>
-        <p><strong>Alex Kiiffner</strong> (Dr. Lankmann)</p>
-        <p><strong>Andrew Hill</strong> (OZ)</p>
-        <br />
-        <p>🛠️ <strong>Technical Team</strong></p>
-        <p>Developer & Operations: Adil Surve</p>
-        <p>Design: Digna Patel & Shashank Laur</p>
-        <p>Web Developer: Samuel Roy Jojo</p>
-        <p>Lead Developer: Veerpal Kaur</p>
-        <br /><br />
-        <p>Thank you for playing our game 💜</p>
-        <p>We hope you enjoyed playing it as much as we enjoyed making it.</p>
-      </div>
-    
-      <div id="after-credits" style="display: none; margin-top: 20px;">
-        <button onclick="location.href='index.html'" class="btn-plain">🔁 Play Again</button>
-      </div>
+    <button onclick="localStorage.clear(); location.reload();" class="btn-plain">Restart Game</button>
+  </div>
+
+  <div class="credits-container" id="credits" style="display: none;">
+    <div class="credits" id="credits-content">
+      <br><br><br><br>
+      <p>🎭 <strong>Credits</strong></p>
+      <p>Written by: Benjamin Oliver</p>
+      <p>Edited by: Andrew Hill</p>
+      <br />
+      <p><strong>Cast</strong></p>
+      <p><strong>Benjamin Oliver</strong> (The Handler)</p>
+      <p><strong>Lauren Brown</strong> (Dr. Finlay)</p>
+      <p><strong>Lajos Babai</strong> (Dr. Pyre)</p>
+      <p><strong>Alex Kiiffner</strong> (Dr. Lankmann)</p>
+      <p><strong>Andrew Hill</strong> (OZ)</p>
+      <br />
+      <p>🛠️ <strong>Technical Team</strong></p>
+      <p>Developer & Operations: Adil Surve</p>
+      <p>Design: Digna Patel & Shashank Laur</p>
+      <p>Web Developer: Samuel Roy Jojo</p>
+      <p>Lead Developer: Veerpal Kaur</p>
+      <br /><br />
+      <p>Thank you for playing our game 💜</p>
+      <p>We hope you enjoyed playing it as much as we enjoyed making it.</p>
     </div>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const epilogueAudio = document.querySelector("audio");
-        const creditsContainer = document.getElementById("credits");
-        const creditsContent = document.getElementById("credits-content");
-        const mainContent = document.getElementById("main-content");
-        const afterCredits = document.getElementById("after-credits");
-    
-        if (epilogueAudio && creditsContainer && mainContent) {
-          epilogueAudio.addEventListener("ended", () => {
-            mainContent.style.display = "none";
-            creditsContainer.style.display = "flex";
-            window.scrollTo({ top: 0, behavior: "smooth" });
-    
-            // Show "Play Again" button when credits finish
-            creditsContent.addEventListener("animationend", () => {
-              afterCredits.style.display = "block";
-            });
+
+    <div id="after-credits" style="display: none; margin-top: 20px;">
+      <button onclick="location.href='index.html'" class="btn-plain">🔁 Play Again</button>
+    </div>
+  </div>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const epilogueAudio = document.querySelector("audio");
+      const creditsContainer = document.getElementById("credits");
+      const creditsContent = document.getElementById("credits-content");
+      const mainContent = document.getElementById("main-content");
+      const afterCredits = document.getElementById("after-credits");
+
+      if (epilogueAudio && creditsContainer && mainContent) {
+        epilogueAudio.addEventListener("ended", () => {
+          mainContent.style.display = "none";
+          creditsContainer.style.display = "flex";
+          window.scrollTo({ top: 0, behavior: "smooth" });
+
+          
+          creditsContent.addEventListener("animationend", () => {
+            afterCredits.classList.add("show");
           });
-        }
-      });
-    </script>
-    
-    
-    
-  </body>
-  
-  
-  
+
+        });
+      }
+    });
+  </script>
+
+
+
+</body>
+
+
+
 </html>

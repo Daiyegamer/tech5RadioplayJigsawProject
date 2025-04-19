@@ -166,7 +166,7 @@ audio {
   line-height: 1.6;
   white-space: pre-line;
   padding-bottom: 100vh;
-  min-height: 200vh;
+  min-height: 130vh;
   width: 100%;
   max-width: 600px;
 }
@@ -190,7 +190,15 @@ audio {
 }
 
 #after-credits {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 10000;
+}
+#after-credits.show {
   display: block;
-  justify-content: center;
-  margin-top: 30px;
+  animation: fadeIn 2s ease-in;
 }
