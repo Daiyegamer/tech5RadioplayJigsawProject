@@ -255,7 +255,7 @@ audio {
 .synopsis {
   flex: 1 1 300px;
   max-width: 320px;
-  font-size: .85rem;
+  font-size: .75rem;
   color: #ddd;
   line-height: 1.6;
 }
