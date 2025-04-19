@@ -148,7 +148,7 @@ audio {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #0b0c1e;
+  background: transparent; /* Keeps your starry background visible */
   color: #eee;
   display: flex;
   justify-content: center;
@@ -156,6 +156,7 @@ audio {
   overflow: hidden;
   z-index: 9999;
   flex-direction: column;
+  animation: fadeIn 2s ease-in forwards; /* optional fade-in */
 }
 
 .credits {
@@ -165,7 +166,8 @@ audio {
   font-size: 18px;
   line-height: 1.6;
   white-space: pre-line;
-  padding-bottom: 100vh; /* Ensures it scrolls fully up */
+  padding-bottom: 100vh;
+  min-height: 200vh; /* ✅ This is the KEY to make scrolling visible */
 }
 
 @keyframes scrollUp {
@@ -177,9 +179,13 @@ audio {
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 #after-credits {
   display: flex;
   justify-content: center;
   margin-top: 30px;
 }
-
