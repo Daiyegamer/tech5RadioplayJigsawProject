@@ -140,3 +140,49 @@ audio {
 .btn-plain:hover {
   background-color: #2ba8cb;
 }
+.credits-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0b0c1e;
+  color: #eee;
+  font-family: "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.credits {
+  position: absolute;
+  bottom: -100%;
+  animation: scrollUp 40s linear forwards;
+  text-align: center;
+  white-space: pre-line;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+@keyframes scrollUp {
+  0% {
+    bottom: -100%;
+  }
+  100% {
+    bottom: 100%;
+  }
+}
+
+#after-credits button {
+  font-size: 18px;
+  padding: 10px 20px;
+  background-color: #2718d3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#after-credits button:hover {
+  background-color: #2ba8cb;
+}
