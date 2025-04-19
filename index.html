@@ -77,10 +77,11 @@
           creditsContainer.style.display = "flex";
           window.scrollTo({ top: 0, behavior: "smooth" });
 
-          
+
           creditsContent.addEventListener("animationend", () => {
-            afterCredits.classList.add("show");
+            afterCredits.style.display = "block";
           });
+
 
         });
       }
