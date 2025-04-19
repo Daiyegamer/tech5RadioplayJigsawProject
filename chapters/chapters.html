@@ -27,11 +27,9 @@
       </a>
       <p>Airlock</p>
     </div>
-    <p id="chapterMessage" style="color: #ff8080; font-weight: bold; margin-top: 10px;"></p>
+    
   </div>
-  
-
-
+  <p id="chapterMessage" style="color: #ff8080; font-weight: bold; margin-top: 10px;"></p>
   <div id="sequenceButtonContainer" style="margin-top: 30px;"></div>
 
   <div class="button-container">
@@ -56,7 +54,7 @@
         const chapterDiv = document.getElementById(chapterId);
         const link = chapterDiv.querySelector("a");
   
-        // ✔️ or 🔒 badge
+        // Add status icon
         const icon = document.createElement("div");
         icon.className = "status-icon";
         icon.textContent = solved ? "✔️" : "🔒";
@@ -64,12 +62,17 @@
   
         chapterDiv.classList.add("locked");
   
-        link.addEventListener("click", (e) => {
+        // Unified message handler for both click and touch
+        function showMessage(e) {
           e.preventDefault();
+          e.stopPropagation();
           msg.textContent = solved
             ? "This chapter has already been solved. Please choose another one."
-            : "Scan your Chapter card to continue.";
-        });
+            : "This chapter is locked. Please solve earlier chapters first.";
+        }
+  
+        link.addEventListener("click", showMessage);
+        link.addEventListener("touchend", showMessage);
       }
   
       setupChapter("chapter1", chapter1Solved);
@@ -85,6 +88,7 @@
       }
     });
   </script>
+  
   
   
   

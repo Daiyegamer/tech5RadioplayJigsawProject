@@ -207,7 +207,7 @@ audio {
 .chapter.locked a {
   
   opacity: 0.4;
-  
+  filter: grayscale(100%);
 }
 
 .chapter .status-icon {
