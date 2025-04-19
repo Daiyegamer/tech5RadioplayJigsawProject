@@ -175,10 +175,10 @@ audio {
 
 @keyframes scrollUp {
   0% {
-    transform: translateY(50vh); /* Start below screen */
+    transform: translateY(100vh); /* Start below the screen */
   }
   100% {
-    transform: translateY(-100%); /* Scroll above screen */
+    transform: translateY(0); /* End at the top of the screen */
   }
 }
 
