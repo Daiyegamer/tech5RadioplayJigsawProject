@@ -160,7 +160,7 @@ audio {
 }
 
 .credits {
-  animation: scrollUp 30s linear forwards;
+  animation: scrollUp 40s linear forwards;
   text-align: center;
   font-size: 18px;
   line-height: 1.6;
@@ -190,7 +190,7 @@ audio {
 }
 
 #after-credits {
-  display: flex;
+  display: block;
   justify-content: center;
   margin-top: 30px;
 }
