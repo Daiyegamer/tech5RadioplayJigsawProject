@@ -34,7 +34,7 @@
         <button class="btn">
           <a href="../index.html">Home</a>
         </button>
-        <button class="btn">
+        <button class="btn" id="solveSequence">
           <a href="../solve-sequence.html">Solve Sequence</a>
         </button>
         <button class="replay-button btn">
@@ -42,5 +42,15 @@
         </button>
       </div>
     </main>
+    <script>
+      const sequenceButton = document.getElementById("solveSequence");
+      const chapter1 = localStorage.getItem("isChapterOneSolved") === "true";
+      const chapter2 = localStorage.getItem("isChapterTwoSolved") === "true";
+      const chapter3 = localStorage.getItem("isChapterThreeSolved") === "true";
+
+      if (!(chapter1 || chapter2 || chapter3)) {
+        solveSequence.style.display = "none";
+      }
+    </script>
   </body>
 </html>
