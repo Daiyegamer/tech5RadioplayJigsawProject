@@ -158,8 +158,8 @@ audio {
   flex-direction: column;
   animation: fadeIn 2s ease-in forwards;
 
-  mask-image: linear-gradient(to top, transparent, black 20%, black 80%, transparent);
-  -webkit-mask-image: linear-gradient(to top, transparent, black 20%, black 80%, transparent);
+  mask-image: linear-gradient(to top, transparent, black 2%, black 98%, transparent);
+  -webkit-mask-image: linear-gradient(to top, transparent, black 2%, black 98%, transparent);
 }
 
 .credits {
@@ -168,8 +168,8 @@ audio {
   font-size: 18px;
   line-height: 1.6;
   white-space: pre-line;
-  padding-bottom: 150vh;
-  min-height: 200vh;
+  padding-bottom: 200vh;
+  min-height: 300vh;
   width: 100%;
   max-width: 600px;
 }
@@ -179,7 +179,7 @@ audio {
     transform: translateY(100vh);
   }
   100% {
-    transform: translateY(-120%);
+    transform: translateY(-100vh);
   }
 }
 
