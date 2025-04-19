@@ -11,7 +11,7 @@
   <div class="chapters">
     <div class="chapter" id="chapter1">
       <a href="solve-chapter-wi80p.html">
-        <img src="../assets/images/spacedoor.jpg" alt="Spacedoor" />
+        <img src="../assets/images/spacedoor.png" alt="Spacedoor" />
       </a>
       <p>Spacedoor</p>
     </div>
@@ -49,35 +49,33 @@
       const chapter2Solved = localStorage.getItem("isChapterTwoSolved") === "true";
       const chapter3Solved = localStorage.getItem("isChapterThreeSolved") === "true";
   
-      const ch1 = document.getElementById("chapter1");
-      const ch2 = document.getElementById("chapter2");
-      const ch3 = document.getElementById("chapter3");
       const msg = document.getElementById("chapterMessage");
+      const container = document.getElementById("sequenceButtonContainer");
   
-      function lockChapter(chapterDiv, solved) {
-        if (solved) {
-          chapterDiv.classList.add("locked");
-          chapterDiv.innerHTML += `<div class="status-icon">✔️</div>`;
+      function setupChapter(chapterId, solved) {
+        const chapterDiv = document.getElementById(chapterId);
+        const link = chapterDiv.querySelector("a");
   
-          // Disable navigation and show message
-          const link = chapterDiv.querySelector("a");
-          link.addEventListener("click", (e) => {
-            e.preventDefault();
-            msg.textContent = "This chapter has already been solved. Please choose another one.";
-          });
-        } else {
-          chapterDiv.innerHTML += `<div class="status-icon">🔒</div>`;
-          chapterDiv.classList.add("locked");
-          const link = chapterDiv.querySelector("a");
-          link.style.pointerEvents = "none";
-        }
+        // ✔️ or 🔒 badge
+        const icon = document.createElement("div");
+        icon.className = "status-icon";
+        icon.textContent = solved ? "✔️" : "🔒";
+        chapterDiv.appendChild(icon);
+  
+        chapterDiv.classList.add("locked");
+  
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          msg.textContent = solved
+            ? "This chapter has already been solved. Please choose another one."
+            : "Scan your Chapter card to continue.";
+        });
       }
   
-      lockChapter(ch1, chapter1Solved);
-      lockChapter(ch2, chapter2Solved);
-      lockChapter(ch3, chapter3Solved);
+      setupChapter("chapter1", chapter1Solved);
+      setupChapter("chapter2", chapter2Solved);
+      setupChapter("chapter3", chapter3Solved);
   
-      const container = document.getElementById("sequenceButtonContainer");
       if (chapter1Solved && chapter2Solved && chapter3Solved) {
         container.innerHTML = `
           <button class="btn">
@@ -87,6 +85,8 @@
       }
     });
   </script>
+  
+  
   
 </body>
 </html>
