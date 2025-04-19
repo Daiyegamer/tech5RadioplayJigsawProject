@@ -9,23 +9,26 @@
 </head>
 
 <body>
-  <div class="hero-container">
-    <div class="synopsis left">
-      <p>
-        In deep space, a research station falls mysteriously silent. As an elite inspector, board the abandoned vessel and piece together chilling clues from recovered audio logs.
-      </p>
-    </div>
-
-    <img src="assets/images/logo.jpg" alt="Game Logo" class="hero-logo" />
-
-    <div class="synopsis right">
-      <p>
-        Can you uncover the truth hidden within the silence—or will some secrets refuse to remain buried?
-      </p>
-    </div>
-  </div>
-
   <div id="main-content">
+    <!-- Hero Section with Logo and Synopsis -->
+    <div class="hero-container">
+      <div class="synopsis left">
+        <p>
+          In deep space, a research station falls mysteriously silent. As an elite inspector, board the abandoned vessel
+          and piece together chilling clues from recovered audio logs.
+        </p>
+      </div>
+
+      <img src="assets/images/logo.jpg" alt="Game Logo" class="hero-logo" />
+
+      <div class="synopsis right">
+        <p>
+          Can you uncover the truth hidden within the silence—or will some secrets refuse to remain buried?
+        </p>
+      </div>
+    </div>
+
+    <!-- Prologue Section -->
     <section style="display: block">
       <h3>Prologue</h3>
       <audio controls>
@@ -33,10 +36,12 @@
         Your browser does not support audio.
       </audio>
     </section>
+
     <p>
       Scan QR codes to hear fragments. Then guess which chapter they belong to.
       Then click on solve to check your solution.
     </p>
+
     <div class="button-container">
       <button class="btn">
         <a href="scan.html">🔎 Scan Your Card</a>
@@ -49,6 +54,7 @@
     <button onclick="localStorage.clear(); location.reload();" class="btn-plain">Restart Game</button>
   </div>
 
+  <!-- Credits Section -->
   <div class="credits-container" id="credits" style="display: none;">
     <div class="credits" id="credits-content">
       <br><br><br><br>
@@ -73,11 +79,12 @@
       <p>We hope you enjoyed playing it as much as we enjoyed making it.</p>
     </div>
 
-    <div id="after-credits">
+    <div id="after-credits" style="display: none; margin-top: 20px;">
       <button onclick="location.href='index.html'" class="btn-plain">🔁 Play Again</button>
     </div>
   </div>
 
+  <!-- Credits Script -->
   <script>
     window.addEventListener("DOMContentLoaded", () => {
       const epilogueAudio = document.querySelector("audio");
