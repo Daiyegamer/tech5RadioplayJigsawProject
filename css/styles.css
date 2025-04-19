@@ -200,3 +200,29 @@ audio {
   text-align: center;
   z-index: 10000;
 }
+.chapter {
+  position: relative;
+}
+
+.chapter.locked a {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.chapter .status-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #00bcd4;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 0 6px #00bcd4aa;
+}
+
+.chapter.locked .status-icon {
+  background: #444;
+}

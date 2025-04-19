@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OZ - Chapters</title>
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body>
-    <main>
-      <h1>Click on a Chapter to Solve</h1>
-      <div class="chapters">
-        <div class="chapter">
-          <h2>Medbay</h2>
-          <a class="imgBox" href="./chapter-ve36c.html">
-            <img src="../assets/images/medbay.jpg" alt="medbay" />
-          </a>
-        </div>
-        <div class="chapter">
-          <h2>Airlock</h2>
-          <a class="imgBox" href="./chapter-er13u.html">
-            <img src="../assets/images/airlock.jpg" alt="" />
-          </a>
-        </div>
-        <div class="chapter">
-          <h2>Spacedoor</h2>
-          <a class="imgBox" href="./chapter-wi80p.html">
-            <img src="../assets/images/spacedoor.png" alt="spacedoor" />
-          </a>
-        </div>
-      </div>
-      <div class="button-container">
-        <button class="btn">
-          <a href="../index.html">Home</a>
-        </button>
-        <button class="btn" id="solveSequence">
-          <a href="../solve-sequence.html">Solve Sequence</a>
-        </button>
-        <button class="replay-button btn">
-          <a href="../index.html" onclick="localStorage.clear();">Reset Game</a>
-        </button>
-      </div>
-    </main>
-    <script>
-      const sequenceButton = document.getElementById("solveSequence");
-      const chapter1 = localStorage.getItem("isChapterOneSolved") === "true";
-      const chapter2 = localStorage.getItem("isChapterTwoSolved") === "true";
-      const chapter3 = localStorage.getItem("isChapterThreeSolved") === "true";
+<head>
+  <meta charset="UTF-8" />
+  <title>Chapters</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <h1>Choose a Chapter</h1>
 
-      if (!(chapter1 || chapter2 || chapter3)) {
-        solveSequence.style.display = "none";
+  <div class="chapters">
+    <div class="chapter" id="chapter1">
+      <a href="solve-chapter-wi80p.html">
+        <img src="../assets/images/spacedoor.jpg" alt="Spacedoor" />
+      </a>
+      <p>Spacedoor</p>
+    </div>
+    <div class="chapter" id="chapter2">
+      <a href="solve-chapter-ve36c.html">
+        <img src="../assets/images/medbay.jpg" alt="Medbay" />
+      </a>
+      <p>Medbay</p>
+    </div>
+    <div class="chapter" id="chapter3">
+      <a href="solve-chapter-er13u.html">
+        <img src="../assets/images/airlock.jpg" alt="Airlock" />
+      </a>
+      <p>Airlock</p>
+    </div>
+  </div>
+
+  <div id="sequenceButtonContainer" style="margin-top: 30px;"></div>
+
+  <div class="button-container">
+    <button class="btn">
+      <a href="../index.html">🏠 Home</a>
+    </button>
+    <button class="btn">
+      <a href="../scan.html">🔎 Scan Your Card</a>
+    </button>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const chapter1Solved = localStorage.getItem("isChapterOneSolved") === "true";
+      const chapter2Solved = localStorage.getItem("isChapterTwoSolved") === "true";
+      const chapter3Solved = localStorage.getItem("isChapterThreeSolved") === "true";
+
+      const ch1 = document.getElementById("chapter1");
+      const ch2 = document.getElementById("chapter2");
+      const ch3 = document.getElementById("chapter3");
+
+      if (chapter1Solved) {
+        ch1.innerHTML += `<div class="status-icon">✔️</div>`;
+      } else {
+        ch1.classList.add("locked");
+        ch1.innerHTML += `<div class="status-icon">🔒</div>`;
       }
-    </script>
-  </body>
+
+      if (chapter2Solved) {
+        ch2.innerHTML += `<div class="status-icon">✔️</div>`;
+      } else {
+        ch2.classList.add("locked");
+        ch2.innerHTML += `<div class="status-icon">🔒</div>`;
+      }
+
+      if (chapter3Solved) {
+        ch3.innerHTML += `<div class="status-icon">✔️</div>`;
+      } else {
+        ch3.classList.add("locked");
+        ch3.innerHTML += `<div class="status-icon">🔒</div>`;
+      }
+
+      // Show solve sequence button only if all 3 chapters solved
+      const container = document.getElementById("sequenceButtonContainer");
+      if (chapter1Solved && chapter2Solved && chapter3Solved) {
+        container.innerHTML = `
+          <button class="btn">
+            <a href="../solve-sequence.html">🧩 Solve the Sequence</a>
+          </button>
+        `;
+      }
+    });
+  </script>
+</body>
 </html>
