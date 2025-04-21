@@ -328,4 +328,52 @@ audio {
 
 .hero-logo {
   animation-delay: 0.5s;
+}/* === QR Scanner Page === */
+
+.scan-page {
+  background-color: #0b0c1e;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  color: #eee;
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.scan-page h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px #00bcd4;
+}
+
+#reader {
+  width: 300px;
+  max-width: 90%;
+  border: 2px solid #00bcd4;
+  border-radius: 12px;
+  box-shadow: 0 0 16px #00bcd4aa;
+  padding: 12px;
+  background-color: #101223;
+}
+
+.btn-home {
+  margin-top: 30px;
+  background-color: #00bcd4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-home:hover {
+  background-color: #2ba8cb;
 }
