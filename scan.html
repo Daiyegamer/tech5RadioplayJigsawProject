@@ -1,18 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>QR Code Scanner</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-    <script
-      src="https://unpkg.com/html5-qrcode"
-      type="text/javascript"
-    ></script>
-  </head>
-  <body>
-    <h1>QR Code Scanner</h1>
-    <div id="reader"></div>
-    <script src="./scripts/scan.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scan Your Card</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body class="scan-page">
+  <h1>🔎 Scan Your Card</h1>
+  <div id="reader"></div>
+
+  <a href="./index.html" class="btn-home">⏪ Back to Home</a>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const qrRegion = document.getElementById("reader");
+
+      function onScanSuccess(decodedText, decodedResult) {
+        console.log(`Scanned: ${decodedText}`);
+        alert(`Card scanned: ${decodedText}`);
+        // Optionally redirect:
+        // window.location.href = `somepage.html?code=${encodeURIComponent(decodedText)}`;
+      }
+
+      function onScanFailure(error) {
+        console.warn(`Scan error: ${error}`);
+      }
+
+      const html5QrCode = new Html5Qrcode("reader");
+
+      Html5Qrcode.getCameras().then((devices) => {
+        if (devices && devices.length) {
+          const backCam = devices.find(device =>
+            device.label.toLowerCase().includes("back")
+          ) || devices[0];
+
+          html5QrCode.start(
+            backCam.id,
+            {
+              fps: 10,
+              qrbox: 250,
+            },
+            onScanSuccess,
+            onScanFailure
+          );
+        }
+      }).catch((err) => {
+        console.error("Camera access error:", err);
+        alert("Could not access camera. Please check permissions.");
+      });
+    });
+  </script>
+</body>
 </html>
